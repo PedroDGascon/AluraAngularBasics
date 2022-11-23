@@ -13,6 +13,7 @@ import { EstadoCuentaComponent } from './estado-cuenta/estado-cuenta.component';
 import { HttpClientModule } from '@angular/common/http';
 
 import { registerLocaleData } from '@angular/common';
+import { AppRoutingModule } from './app-routing';
 
 registerLocaleData(localEs, 'es')
 
@@ -26,6 +27,7 @@ registerLocaleData(localEs, 'es')
     BrowserModule,
     FormsModule,
     HttpClientModule,
+    AppRoutingModule,
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'en-US' }

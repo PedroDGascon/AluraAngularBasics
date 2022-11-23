@@ -1,4 +1,7 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { Component, OnInit, Injectable } from '@angular/core';
+import { TransferenciasService } from '../services/transferencias.service';
+import { Transferencia } from '../models/transferencia.model';
 
 @Component({
   selector: 'app-nueva-transferencia',
@@ -7,18 +10,26 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 })
 export class NuevaTransferenciaComponent implements OnInit {
 
-  @Output() enviarDatos = new EventEmitter<any>();
+  constructor(private service: TransferenciasService, private router:Router){}
+
 
   valor: string = '';
   destino: string = '';
 
   transferir(){
-    const datos ={
+    const datos: Transferencia ={
       valor: this.valor,
       destino: this.destino,
       fecha: new Date(),
     }
-    this.enviarDatos.emit(datos);
+
+    this.service.agregar(datos).subscribe(
+      () => {
+       this.router.navigateByUrl("estado");
+    },
+      (err) => console.log(err)
+    );
+
     this.limpiarCampos();
   }
 
@@ -28,9 +39,8 @@ export class NuevaTransferenciaComponent implements OnInit {
     this.destino = ''
   }
 
-  constructor() { }
-
   ngOnInit(): void {
+
   }
 
 }

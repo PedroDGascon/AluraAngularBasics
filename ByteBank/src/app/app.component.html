@@ -1,6 +1,10 @@
-<app-nueva-transferencia (enviarDatos)="transferir($event)">
-</app-nueva-transferencia>
+<header>
+  <a routerLink="estado"> ByteBank </a>
 
+  <a routerLink="nueva-transferencia" routerLinkActive="activo">
+    Nueva Transferencia
+  </a>
 
-<app-estado-cuenta></app-estado-cuenta>
+  </header>
 
+<router-outlet></router-outlet>
